@@ -25,7 +25,7 @@ namespace RegisztracioAlkalmazas
                 try
                 {
                     string fileName = saveFileDialog1.FileName;
-                    File.WriteAllLines(fileName, listBox1.Items.Cast<String>().ToArray()); 
+                    (fileName, listBox1.Items.Cast<String>().ToArray()); 
                  
                 }
                 catch (Exception)
