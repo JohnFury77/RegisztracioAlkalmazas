@@ -162,6 +162,7 @@
             this.Mentes.TabIndex = 12;
             this.Mentes.Text = "Mentés";
             this.Mentes.UseVisualStyleBackColor = true;
+            this.Mentes.Click += new System.EventHandler(this.Mentes_Click);
             // 
             // Betöltés
             // 
@@ -171,6 +172,7 @@
             this.Betöltés.TabIndex = 13;
             this.Betöltés.Text = "Betoltes";
             this.Betöltés.UseVisualStyleBackColor = true;
+            this.Betöltés.Click += new System.EventHandler(this.Betöltés_Click);
             // 
             // openFileDialog1
             // 
@@ -184,7 +186,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(221, 352);
+            this.ClientSize = new System.Drawing.Size(273, 352);
             this.Controls.Add(this.Betöltés);
             this.Controls.Add(this.Mentes);
             this.Controls.Add(this.Hozzaadas);

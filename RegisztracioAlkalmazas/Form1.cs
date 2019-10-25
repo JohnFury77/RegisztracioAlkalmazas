@@ -25,7 +25,25 @@ namespace RegisztracioAlkalmazas
                 try
                 {
                     string fileName = saveFileDialog1.FileName;
-                    (fileName, listBox1.Items.Cast<String>().ToArray()); 
+                    StreamWriter sw = new StreamWriter(fileName);
+                    sw.Write(textBox2.Text+";");
+                    sw.Write(textBox3.Text+";");
+                    sw.Write(listBox1.Text+";");
+                    if (radioButton1.Checked==true)
+                    {
+                        sw.Write("Férfi;");
+                    }
+                    else if(radioButton2.Checked==true)
+                    {
+                        sw.Write("Nő;");
+                    }
+                    foreach (var item in listBox1.Items)
+                    {
+                        sw.Write(item+",");
+                    }
+
+                    sw.Close();
+                   
                  
                 }
                 catch (Exception)
@@ -40,13 +58,37 @@ namespace RegisztracioAlkalmazas
             {
                 try
                 {
-                    string[] sorok = File.ReadAllLines(openFileDialog1.FileName);
+                    StreamReader sr = new StreamReader(openFileDialog1.FileName);
+                    string sor = sr.ReadLine();
+                    string[] nev = sor.Split(';');
                     
+                    textBox2.Text = nev[0];
+                    textBox3.Text = nev[1];
+                    
+                    if (nev[3]=="Férfi")
+                    {
+                        radioButton1.Checked = true;
+                    }
+                    else if(nev[3] == "Nő")
+                    {
+                        radioButton2.Checked = true;
+                    }
+                    string[] hobbitok = nev[4].Split(',');
                     listBox1.Items.Clear();
+                    for (int i = 0; i < hobbitok.Length; i++)
+                    {
+                        listBox1.Items.Add(hobbitok[i]);
+                        if (hobbitok[i] == nev[2])
+                        {
+                            listBox1.SelectedItem = hobbitok[i];
+                        }
+                    }
+
+                    /*listBox1.Items.Clear();
                     foreach (var item in sorok) 
                     {
                         listBox1.Items.Add(item);
-                    }
+                    }*/
                 }
                 catch (IOException)
                 {
@@ -74,6 +116,17 @@ namespace RegisztracioAlkalmazas
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Mentes_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+
+        }
+
+        private void Betöltés_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
         }
     }
 }
